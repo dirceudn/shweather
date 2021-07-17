@@ -14,10 +14,10 @@ class OpenWeatherApi(private val clientFactory: () -> HttpClient) {
     suspend fun fetchWeather(unit: String, lat: Double, lng: Double) = client.get<HttpResponse> {
         url {
             encodedPath = "/data/2.5/onecall"
-            parameters.append("unit", unit)
+            parameters.append("units", unit)
             parameters.append("lat", lat.toString())
-            parameters.append("lng", lng.toString())
+            parameters.append("lon", lng.toString())
+            parameters.append("exclude", "hourly,minutely")
         }
     }
-
 }

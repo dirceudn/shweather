@@ -8,13 +8,14 @@ import io.github.aakira.napier.Napier
 import com.org.sweather.presentation.BuildConfig
 import com.org.sweather.app.di.appModule
 import com.org.sweather.core.app.di.initKoin
+import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 
 
-
 class SweatherApplication : Application() {
 
+    @InternalCoroutinesApi
     override fun onCreate() {
         super.onCreate()
 

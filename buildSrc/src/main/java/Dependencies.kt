@@ -3,7 +3,7 @@ object Versions {
     //- Android native libs
     const val compose = "1.0.0-beta09"
     const val composeActivity = "1.3.0-rc01"
-    const val navigation = "1.0.0-alpha08"
+    const val navigation = "2.4.0-alpha04"
     const val gradle = "7.0.0-beta05"
     const val constraintLayoutCompose = "1.0.0-alpha07"
     const val composeRouterVersion = "0.18.0"
@@ -43,6 +43,8 @@ object Versions {
 
 object Accompanist {
     const val accomPanist = "com.google.accompanist:accompanist-permissions:${Versions.accompanist}"
+    const val insets = "com.google.accompanist:accompanist-insets:${Versions.accompanist}"
+
 }
 
 object Logs {

@@ -74,5 +74,8 @@ dependencies {
 
     //project
     api(project(":presentation"))
+    api(project(":presentation:navigation"))
+    api(project(":presentation:search"))
+    api(project(":presentation:home"))
     api(project(":core"))
 }

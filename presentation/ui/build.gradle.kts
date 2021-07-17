@@ -51,6 +51,8 @@ dependencies {
     implementation(Android.coreKtx)
     implementation(Android.appCompat)
     implementation(Android.material)
+    api(Accompanist.insets)
+
 
     api(project(":core"))
 

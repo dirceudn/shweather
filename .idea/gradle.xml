@@ -15,6 +15,9 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/presentation" />
             <option value="$PROJECT_DIR$/presentation/home" />
+            <option value="$PROJECT_DIR$/presentation/navigation" />
+            <option value="$PROJECT_DIR$/presentation/search" />
+            <option value="$PROJECT_DIR$/presentation/settings" />
             <option value="$PROJECT_DIR$/presentation/ui" />
           </set>
         </option>
