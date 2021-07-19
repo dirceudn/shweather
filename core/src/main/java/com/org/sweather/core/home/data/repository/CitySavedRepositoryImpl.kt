@@ -13,14 +13,10 @@ class CitySavedRepositoryImpl(private val preferenceContract: ModelPreferenceCon
     companion object {
         val cityDefault = CityData(
             city = "Paris",
-            lat = 48.8566,
-            lng = 2.3522,
-            country = "France",
-            iso2 = "FR",
-            adminName = "Île-de-France",
-            capital = "primary",
-            populationPro = "",
-            population = ""
+            lat = "48.8566",
+            lng = "2.3522",
+            id = "",
+            locationType = ""
         )
     }
 }

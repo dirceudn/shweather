@@ -37,13 +37,13 @@ android {
 
     productFlavors {
         create("dev") {
-            buildConfigField("String", "CITIES_BASE_URL", "\"api.mocki.io/v2/19fc4cb7\"")
+            buildConfigField("String", "CITIES_BASE_URL", "\"www.metaweather.com\"")
             buildConfigField("String", "WEATHER_BASE_URL", "\"api.openweathermap.org\"")
             buildConfigField("String", "WEATHER_ID", "\"6bb2fc202cc8e921172d7e138b04484a\"")
 
         }
         create("prod") {
-            buildConfigField("String", "CITIES_BASE_URL", "\"api.mocki.io/v2/19fc4cb7\"")
+            buildConfigField("String", "CITIES_BASE_URL", "\"www.metaweather.com\"")
             buildConfigField("String", "WEATHER_ID", "\"6bb2fc202cc8e921172d7e138b04484a\"")
             buildConfigField("String", "WEATHER_BASE_URL", "\"api.openweathermap.org\"")
         }

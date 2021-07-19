@@ -10,9 +10,10 @@ class SearchCityApi(private val clientFactory: () -> HttpClient) {
         clientFactory()
     }
 
-    suspend fun fetchCities() = client.get<HttpResponse> {
+    suspend fun fetchCities(cityQuery: String) = client.get<HttpResponse> {
         url {
-            encodedPath = "/city1"
+            encodedPath = "/api/location/search"
+            parameters.append("query", cityQuery)
         }
     }
 }

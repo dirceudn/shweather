@@ -112,8 +112,8 @@ fun BackAppBar(
 @Composable
 fun MenuItem(@DrawableRes icon: Int, description: String, onItemClicked: () -> Unit) {
     Box(modifier = Modifier
-        .padding(8.dp)
-        .size(48.dp)
+        .padding(10.dp)
+        .size(40.dp)
         .clickable { onItemClicked() }) {
         Spacer(
             Modifier

@@ -1,30 +1,42 @@
 package com.org.sweather.core.search.data.repository
 
-import com.org.sweather.core.common.State
+import com.org.sweather.core.ModelPreferenceContract
 import com.org.sweather.core.search.data.datasource.SearchDataSource
-import com.org.sweather.core.search.data.model.CityDataModel
+import com.org.sweather.core.search.data.model.CityData
 import com.org.sweather.core.search.domain.repository.SearchCityRepository
 import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
-class SearchCityRepositoryImpl(private val searchDataSource: SearchDataSource) :
+@ExperimentalCoroutinesApi
+class SearchCityRepositoryImpl(
+    private val searchDataSource: SearchDataSource,
+    private val preferenceContract: ModelPreferenceContract
+) :
     SearchCityRepository {
 
+    //todo improve this part later
+    private val isCitySaved =
+        MutableStateFlow(false)
 
-    private val citiesDataMutableStateFlow =
-        MutableStateFlow<State<CityDataModel>>(State.Uninitialized(CityDataModel()))
-
-    override suspend fun getCitiesFLow(): Flow<State<CityDataModel>> =
-        citiesDataMutableStateFlow
+    override suspend fun getCitiesFLow(): Flow<Boolean> =
+        isCitySaved
 
     @DelicateCoroutinesApi
-    override suspend fun fetchCities() {
+    override suspend fun fetchCities(query: String) {
 
-        citiesDataMutableStateFlow.value = searchDataSource.getCities().fold({
-            State.Failure(data = citiesDataMutableStateFlow.value())
+        isCitySaved.value = searchDataSource.getCities(query = query).fold({
+            false
         }, { cityDataModel ->
-            State.Success(cityDataModel)
+            if (cityDataModel.listCities.isNotEmpty()) {
+                saveCity(cityData = cityDataModel.listCities[0])
+            }
+            true
         })
+    }
+
+    private fun saveCity(cityData: CityData) {
+        preferenceContract.put(cityData, ModelPreferenceContract.KEY_CITY)
     }
 }

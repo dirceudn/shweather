@@ -10,6 +10,7 @@ import com.org.sweather.core.search.domain.usecase.CitiesStateFlow
 import com.org.sweather.core.search.domain.usecase.GetCitiesUseCase
 import com.org.sweather.core.search.domain.usecase.citiesStateFlow
 import com.org.sweather.core.search.domain.usecase.getCitiesUseCase
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.dsl.module
 
 fun searchCityDiModule(openSearchCityBaseUrl: String, isDebug: Boolean) = module {
@@ -26,8 +27,9 @@ fun searchCityDiModule(openSearchCityBaseUrl: String, isDebug: Boolean) = module
 
 }
 
+@ExperimentalCoroutinesApi
 val searchCityRepositoryModule = module {
-    factory<SearchCityRepository> { SearchCityRepositoryImpl(get()) }
+    factory<SearchCityRepository> { SearchCityRepositoryImpl(get(), get()) }
 }
 
 val searchCityUseCase = module {
@@ -37,6 +39,7 @@ val searchCityUseCase = module {
 }
 
 
+@ExperimentalCoroutinesApi
 fun searchCityModule(baseUrl: String, isDebug: Boolean) =
     searchCityDiModule(baseUrl, isDebug) + searchCityUseCase + searchCityRepositoryModule
 

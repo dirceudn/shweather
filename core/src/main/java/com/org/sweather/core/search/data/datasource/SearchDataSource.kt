@@ -7,6 +7,6 @@ import com.org.sweather.core.search.data.model.CityData
 import com.org.sweather.core.search.data.model.CityDataModel
 
 interface SearchDataSource {
-    suspend fun getCities(
+    suspend fun getCities(query:String
     ): Either<DefaultErrorDataModel, CityDataModel>
 }

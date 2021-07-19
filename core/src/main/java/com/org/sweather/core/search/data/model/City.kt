@@ -1,40 +1,36 @@
 package com.org.sweather.core.search.data.model
 
 import com.org.sweather.core.search.api.model.NetworkCityDataModel
-import java.util.*
 
 data class CityDataModel(
-    val listCities: List<CityData> = emptyList()
+    val listCities: List<CityData>
 )
 
 data class CityData(
+    val id: String,
     val city: String,
-    val iso2: String,
-    val adminName: String,
-    val capital: String,
-    val lat: Double,
-    val lng: Double,
-    val country: String,
-    val population: String,
-    val populationPro: String,
-    val id: String = uuIdGenerate(),
+    val lat: String,
+    val lng: String,
+    val locationType: String
 ) {
-    companion object {
-        private const val prefix = "ci"
 
-        private fun uuIdGenerate() = prefix + UUID.randomUUID().toString()
-    }
 }
 
 
 fun NetworkCityDataModel.toDataModel() = CityData(
-    city = city,
-    lat = lat.toDouble(),
-    lng = lng.toDouble(),
-    country = country,
-    iso2 = iso2,
-    adminName = adminName,
-    capital = capital,
-    population = population,
-    populationPro = propulationProper
+    city = cityTitle,
+    lat = latLng.toSplit()[0],
+    lng = latLng.toSplit()[1],
+    id = id,
+    locationType = locationType
 )
+
+fun String.toSplit(): List<String> {
+    return this.split(",")
+}
+
+sealed class CityStatus {
+    object CityNotFound : CityStatus()
+    object CityFound : CityStatus()
+    object CitySearching : CityStatus()
+}

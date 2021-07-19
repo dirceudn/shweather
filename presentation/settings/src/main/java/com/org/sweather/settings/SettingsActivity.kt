@@ -24,7 +24,7 @@ class SettingsActivity : AppCompatActivity() {
         setContent {
             SettingsTheme() {
                 ProvideWindowInsets {
-                    SettingsPage()
+                    SettingsPage(modifier = Modifier.fillMaxSize())
                 }
             }
         }
@@ -38,17 +38,15 @@ fun SettingsPage(modifier: Modifier = Modifier) {
     val isChecked = remember { mutableStateOf(true) }
 
     Scaffold(content = {
-        LazyColumn(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(modifier = modifier) {
             item {
-                BackAppBar(title = "Search") {
+                BackAppBar(title = "Settings ") {
 
                 }
-
             }
             item {
-
                 SweatherCheckBox(
-                    text = "Enable metrics º for  current weather",
+                    text = "Enable metrics ºC",
                     checked = isChecked
                 ) {
                     isChecked.value = it

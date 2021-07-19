@@ -11,20 +11,18 @@ import com.org.sweather.core.search.data.model.CityData
  * @author Malwinder Singh
  * medium.com/@dev.malwinder
  */
-class ModelPreferencesManager(val application: SweatherApplication) : ModelPreferenceContract {
+class ModelPreferencesManager(private val application: SweatherApplication) :
+    ModelPreferenceContract {
 
-    lateinit var preferences: SharedPreferences
+    var preferences: SharedPreferences
 
-    //Name of Shared Preference file
     private val PREFERENCES_FILE_NAME = "PREFERENCES_FILE_NAME"
+
     init {
         preferences = application.getSharedPreferences(
             PREFERENCES_FILE_NAME, Context.MODE_PRIVATE
         )
     }
-
-    //Shared Preference field used to save and retrieve JSON string
-
 
     /**
      * Call this first before retrieving or saving object.
@@ -59,4 +57,11 @@ class ModelPreferencesManager(val application: SweatherApplication) : ModelPrefe
         //type Class < T >" is used to cast.
         return GsonBuilder().create().fromJson(value, CityData::class.java)
     }
+
+    override fun enableMetric(enable: Boolean, key: String) {
+        preferences.edit().putBoolean(key, enable).apply()
+    }
+
+    override fun isMetricEnable(): Boolean =
+        preferences.getBoolean(ModelPreferenceContract.ENABLE_METRIC, true)
 }
