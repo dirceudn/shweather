@@ -7,3 +7,10 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Sweather"
 include(":app")
+include(":core")
+include(":presentation")
+include(":presentation:ui")
+include(":presentation:home")
+include(":presentation:search")
+include(":presentation:navigation")
+include(":presentation:settings")
