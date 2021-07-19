@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,10 +41,10 @@ fun SweatherAppBar(
                 .background(transparent),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            MenuItem(icon = R.drawable.ic_baseline_search_24, description = "Search") {
+            MenuItem(icon = R.drawable.search, description = "Search") {
                 onSearchSelected()
             }
-            MenuItem(icon = R.drawable.ic_baseline_settings_24, description = "Settings") {
+            MenuItem(icon = R.drawable.setting_lines, description = "Settings") {
                 onSettingSelected()
             }
         }

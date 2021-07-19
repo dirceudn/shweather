@@ -6,7 +6,18 @@ import java.util.*
 fun Long.getDateTime(): String? {
     val timeStamp = this
     return try {
-        val sdf = SimpleDateFormat("EEE d MMM y", Locale.getDefault())
+        val sdf = SimpleDateFormat("EEEE dd MMMM", Locale.getDefault())
+        val netDate = Date(timeStamp * 1000)
+        sdf.format(netDate)
+    } catch (e: Exception) {
+        "--"
+    }
+}
+
+fun Long.getDayOfWeek(): String? {
+    val timeStamp = this
+    return try {
+        val sdf = SimpleDateFormat("EEE", Locale.getDefault())
         val netDate = Date(timeStamp * 1000)
         sdf.format(netDate)
     } catch (e: Exception) {

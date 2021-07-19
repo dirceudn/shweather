@@ -40,6 +40,9 @@ android {
 
 dependencies {
 
+    implementation(LifeCycle.runtimeKtx)
+    implementation(LifeCycle.livedataExt)
+
     implementation(project(":presentation"))
     implementation(project(":presentation:navigation"))
     implementation("androidx.core:core-ktx:1.6.0")

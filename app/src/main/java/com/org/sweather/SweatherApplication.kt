@@ -8,6 +8,7 @@ import io.github.aakira.napier.Napier
 import com.org.sweather.presentation.BuildConfig
 import com.org.sweather.app.di.appModule
 import com.org.sweather.core.app.di.initKoin
+import com.org.sweather.search.di.searchModule
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -26,11 +27,14 @@ class SweatherApplication : Application() {
             Napier.base(DebugAntilog("Sweather"))
         }
 
+        val deviceLanguageGetter = LanguageManagerImpl(this)
         initKoin(
             BuildConfig.WEATHER_BASE_URL,
+            BuildConfig.CITIES_BASE_URL,
             BuildConfig.DEBUG,
             BuildConfig.WEATHER_ID,
-            listOf(appModule)
+            deviceLanguageGetter,
+            listOf(appModule, searchModule)
         ) {
             androidLogger()
             androidContext(this@SweatherApplication)

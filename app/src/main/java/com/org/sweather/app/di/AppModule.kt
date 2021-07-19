@@ -15,5 +15,4 @@ val appModule = module {
 
     factory<OnSearchRouteContract> { OnSearchRoute() }
 
-
 }

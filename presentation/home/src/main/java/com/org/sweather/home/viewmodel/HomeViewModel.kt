@@ -33,23 +33,12 @@ class HomeViewModel(
         viewModelScope.launch {
             weatherStateFlow.invoke().collect { state ->
                 when (state) {
-                    is State.Uninitialized -> {
-                        weatherUiStateFlow.value = EmptyWeather()
-                    }
-                    is State.Loading -> {
-                        weatherUiStateFlow.value = EmptyWeather()
+                    is State.Uninitialized -> weatherUiStateFlow.value = EmptyWeather()
+                    is State.Loading -> weatherUiStateFlow.value = EmptyWeather()
+                    is State.Success -> weatherUiStateFlow.value = state()?.toUiModel()
+                    is State.Failure -> weatherUiStateFlow.value = EmptyWeather()
 
-                    }
-                    is State.Success -> {
-                        weatherUiStateFlow.value = state()?.toUiModel()
-                    }
-                    is State.Failure -> {
-                        weatherUiStateFlow.value = EmptyWeather()
-                    }
-
-                    else -> {
-                        weatherUiStateFlow.value = EmptyWeather()
-                    }
+                    else -> weatherUiStateFlow.value = EmptyWeather()
                 }
             }
         }
