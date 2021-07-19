@@ -1,6 +1,7 @@
 package com.org.sweather.core.app.di
 
 import com.org.sweather.core.LanguageManager
+import com.org.sweather.core.ModelPreferenceContract
 import com.org.sweather.core.home.homeModules
 import com.org.sweather.core.search.searchCityModule
 import org.koin.core.context.startKoin
@@ -15,6 +16,7 @@ fun initKoin(
     isDebug: Boolean,
     openWeatherAppId: String,
     languageManager: LanguageManager,
+    preferenceManager: ModelPreferenceContract,
     specificModules: List<Module>,
     appDeclaration: KoinAppDeclaration = {},
 ) = startKoin {
@@ -25,7 +27,7 @@ fun initKoin(
             isDebug
         ) + specificModules + module {
             single { languageManager }
-        }
+        } + module { single { preferenceManager } }
     )
 
 }

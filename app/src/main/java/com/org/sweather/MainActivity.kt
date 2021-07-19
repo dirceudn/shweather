@@ -17,6 +17,7 @@ import com.org.sweather.home.screen.HomeScreen
 import com.org.sweather.home.viewmodel.HomeViewModel
 import com.org.sweather.navigation.RoutePageScreen
 import com.org.sweather.navigation.search.OnSearchRouteContract
+import com.org.sweather.navigation.settings.OnSettingsContract
 import com.org.sweather.ui.SweatherAppBar
 import com.org.sweather.ui.theme.SweatherTheme
 import com.org.sweather.ui.warmFlameEnd
@@ -29,6 +30,7 @@ class MainActivity : ComponentActivity() {
     @InternalCoroutinesApi
     private val homeViewModel: HomeViewModel by viewModel()
     private val onSearchRouteContract: OnSearchRouteContract by inject()
+    private val onSettingsRoute: OnSettingsContract by inject()
 
 
     @InternalCoroutinesApi
@@ -41,7 +43,8 @@ class MainActivity : ComponentActivity() {
                     RoutePageScreen(
                         homeViewModel = homeViewModel,
                         context = context,
-                        onSearchRouteContract = onSearchRouteContract
+                        onSearchRouteContract = onSearchRouteContract,
+                        onSettingRouteContract = onSettingsRoute
                     )
                 }
             }
@@ -76,7 +79,7 @@ fun MainPage(
             .fillMaxSize()
     ) {
 
-        Column() {
+        Column {
             SweatherAppBar(
                 onSearchSelected = onSearchSelected,
                 onSettingSelected = onSettingSelected

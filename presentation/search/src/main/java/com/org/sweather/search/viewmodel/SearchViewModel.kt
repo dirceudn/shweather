@@ -7,7 +7,9 @@ import com.org.sweather.core.search.domain.usecase.CitiesStateFlow
 import com.org.sweather.core.search.domain.usecase.GetCitiesUseCase
 import com.org.sweather.search.model.CityUIModel
 import com.org.sweather.search.model.toEntity
+import io.github.aakira.napier.Napier
 import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -27,20 +29,9 @@ class SearchViewModel(
     val citiesUiStateFlow = MutableStateFlow<CityUIModel?>(null)
 
     init {
-
         viewModelScope.launch {
             citiesStateFlow.invoke().collect { state ->
-                when (state) {
-                    is State.Uninitialized -> {citiesUiStateFlow.value =
-                        null}
-                    is State.Loading -> {citiesUiStateFlow.value =
-                        null}
-                    is State.Failure -> {citiesUiStateFlow.value =
-                        null}
-                    is State.Success -> {citiesUiStateFlow.value =
-                        state()?.listCities?.map { it.toEntity() }?.let { CityUIModel(cities = it) }}
-                }
-
+                Napier.d("STATE ${state.data}")
             }
         }
 

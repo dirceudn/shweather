@@ -4,11 +4,14 @@ import com.org.sweather.core.common.State
 import com.org.sweather.core.home.data.datasource.WeatherDataSource
 import com.org.sweather.core.home.data.model.WeatherDataOneCall
 import com.org.sweather.core.home.domain.repository.WeatherRepository
+import com.org.sweather.core.search.data.model.CityData
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
-class WeatherRepositoryImpl(private val weatherDataSource: WeatherDataSource) : WeatherRepository {
+class WeatherRepositoryImpl(
+    private val weatherDataSource: WeatherDataSource
+) : WeatherRepository {
 
 
     private val weatherDataMutableStateFlow =
@@ -19,17 +22,18 @@ class WeatherRepositoryImpl(private val weatherDataSource: WeatherDataSource) : 
 
     @DelicateCoroutinesApi
     override suspend fun fetchWeather(
-        lat: Double,
-        lng: Double
+        cityData: CityData
     ) {
         if (weatherDataMutableStateFlow.value !is State.Loading) {
             weatherDataMutableStateFlow.value = State.Loading(null)
             weatherDataMutableStateFlow.value =
-                weatherDataSource.getWeather(lat = lat, lng = lng).fold({
+                weatherDataSource.getWeather(cityData = cityData).fold({
                     State.Failure(data = weatherDataMutableStateFlow.value())
                 }, { weatherDataOneCall ->
                     State.Success(data = weatherDataOneCall)
                 })
         }
     }
+
+
 }

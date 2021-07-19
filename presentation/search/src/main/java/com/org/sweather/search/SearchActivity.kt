@@ -4,25 +4,23 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.DropdownMenu
 import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.PopupProperties
-import androidx.lifecycle.asLiveData
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.org.sweather.search.ui.theme.SearchTheme
 import com.org.sweather.search.viewmodel.SearchViewModel
+import com.org.sweather.ui.BackAppBar
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchActivity : AppCompatActivity() {
@@ -35,15 +33,13 @@ class SearchActivity : AppCompatActivity() {
         setContent {
             SearchTheme() {
                 ProvideWindowInsets {
-                    Surface(color = Color.Cyan,modifier =  Modifier.fillMaxSize()){
-                        AutoCompleteText(searchViewModel = searchViewModel, onValueChange = {
-                            Napier.d("VALUE $it")
-
-
-                        }, onOptionSelected = {
-
+                    AutoCompleteSearchCityText(
+                        searchViewModel = searchViewModel,
+                        onBack = {
+                            finish()
+                        },
+                        onOptionSelected = {
                         })
-                    }
                 }
             }
         }
@@ -60,12 +56,11 @@ class SearchActivity : AppCompatActivity() {
 
 @InternalCoroutinesApi
 @Composable
-fun AutoCompleteText(
+fun AutoCompleteSearchCityText(
     searchViewModel: SearchViewModel,
-    onValueChange: (String) -> Unit,
+    onBack: () -> Unit,
     onOptionSelected: (String) -> Unit,
     modifier: Modifier = Modifier,
-    label: @Composable (() -> Unit)? = null,
     suggestions: List<String> = emptyList()
 ) {
 
@@ -76,6 +71,9 @@ fun AutoCompleteText(
         val citySearchMutableState = mutableStateOf("")
         val listFilter = remember { mutableStateOf(emptyList<String>()) }
         val list = listOf("aaaa", "bbbbb", "cccc")
+        BackAppBar(title = "Search") {
+            onBack()
+        }
 
         SearchScreenPage(cityValue = citySearchMutableState) {
             citySearchMutableState.value = it

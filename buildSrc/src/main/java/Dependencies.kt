@@ -127,6 +127,10 @@ object LifeCycle {
 
 }
 
+object Gson {
+    const val gson = "com.google.code.gson:gson:2.8.7"
+}
+
 object DateTime {
     const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.kotlinxDateTime}"
 }

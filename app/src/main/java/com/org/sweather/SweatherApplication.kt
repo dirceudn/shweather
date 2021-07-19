@@ -1,14 +1,12 @@
 package com.org.sweather
 
 import android.app.Application
-import android.content.Context
-import io.github.aakira.napier.Antilog
-import io.github.aakira.napier.DebugAntilog
-import io.github.aakira.napier.Napier
-import com.org.sweather.presentation.BuildConfig
 import com.org.sweather.app.di.appModule
 import com.org.sweather.core.app.di.initKoin
+import com.org.sweather.presentation.BuildConfig
 import com.org.sweather.search.di.searchModule
+import io.github.aakira.napier.DebugAntilog
+import io.github.aakira.napier.Napier
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -28,12 +26,15 @@ class SweatherApplication : Application() {
         }
 
         val deviceLanguageGetter = LanguageManagerImpl(this)
+        val preferenceGetter = ModelPreferencesManager(this)
+
         initKoin(
             BuildConfig.WEATHER_BASE_URL,
             BuildConfig.CITIES_BASE_URL,
             BuildConfig.DEBUG,
             BuildConfig.WEATHER_ID,
             deviceLanguageGetter,
+            preferenceGetter,
             listOf(appModule, searchModule)
         ) {
             androidLogger()

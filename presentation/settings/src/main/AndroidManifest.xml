@@ -2,4 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.org.sweather.settings">
 
+
+    <application>
+        <activity
+            android:name=".SettingsActivity"
+            android:theme="@style/Theme.Sweather.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="com.org.sweather.settings.SettingsActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+
 </manifest>

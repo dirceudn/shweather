@@ -12,7 +12,7 @@ class SearchCityApi(private val clientFactory: () -> HttpClient) {
 
     suspend fun fetchCities() = client.get<HttpResponse> {
         url {
-            encodedPath = "/france"
+            encodedPath = "/city1"
         }
     }
 }

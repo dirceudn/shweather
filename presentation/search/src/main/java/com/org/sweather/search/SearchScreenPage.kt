@@ -36,10 +36,7 @@ fun SearchScreenPage(
     SearchOutlineField(
         modifier = Modifier.focusRequester(focusRequester),
         trailingIcon = {
-            Image(
-                imageVector = ImageVector.vectorResource(id = R.drawable.ic_baseline_search_24),
-                contentDescription = "information button",
-            )
+
         },
         onTrailingIconClicked = {
 

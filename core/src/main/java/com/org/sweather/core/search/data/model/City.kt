@@ -4,7 +4,7 @@ import com.org.sweather.core.search.api.model.NetworkCityDataModel
 import java.util.*
 
 data class CityDataModel(
-    val listCities: List<CityData>
+    val listCities: List<CityData> = emptyList()
 )
 
 data class CityData(

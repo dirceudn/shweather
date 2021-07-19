@@ -3,6 +3,7 @@ package com.org.sweather.home.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.org.sweather.core.common.State
+import com.org.sweather.core.home.domain.usecase.GetCitySavedUseCase
 import com.org.sweather.core.home.domain.usecase.GetWeatherUsecase
 import com.org.sweather.core.home.domain.usecase.WeatherStateFlow
 import com.org.sweather.home.model.EmptyWeather
@@ -16,12 +17,14 @@ import kotlinx.coroutines.launch
 @InternalCoroutinesApi
 class HomeViewModel(
     private val weatherStateFlow: WeatherStateFlow,
-    private val getWeatherUseCase: GetWeatherUsecase
+    private val getWeatherUseCase: GetWeatherUsecase,
+    private val getCitySavedUseCase: GetCitySavedUseCase
 ) : ViewModel() {
 
     fun fetchWeather() {
         viewModelScope.launch {
-            getWeatherUseCase.invoke(lat = 48.7462527, lng = 2.4573976)
+            val city = getCitySavedUseCase.invoke()
+            getWeatherUseCase.invoke(cityData = city)
         }
     }
 

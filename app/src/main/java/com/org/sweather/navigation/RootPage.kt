@@ -9,6 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import com.org.sweather.MainPage
 import com.org.sweather.home.viewmodel.HomeViewModel
 import com.org.sweather.navigation.search.OnSearchRouteContract
+import com.org.sweather.navigation.settings.OnSettingsContract
 import kotlinx.coroutines.InternalCoroutinesApi
 
 
@@ -17,7 +18,8 @@ import kotlinx.coroutines.InternalCoroutinesApi
 fun RoutePageScreen(
     homeViewModel: HomeViewModel,
     context: Context,
-    onSearchRouteContract: OnSearchRouteContract
+    onSearchRouteContract: OnSearchRouteContract,
+    onSettingRouteContract: OnSettingsContract
 ) {
     val navController = rememberNavController()
 
@@ -26,7 +28,8 @@ fun RoutePageScreen(
             MainActions(
                 navController = navController,
                 onSearchRouteContract = onSearchRouteContract,
-                context = context
+                context = context,
+                onSettingsRouteContract = onSettingRouteContract
             )
         }
 
@@ -35,7 +38,7 @@ fun RoutePageScreen(
         composable("home") {
             MainPage(
                 homeViewModel = homeViewModel,
-                onSettingSelected = {},
+                onSettingSelected = actionController.goToOnSetting,
                 onSearchSelected = actionController.gotToOnSearch
             )
         }

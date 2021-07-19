@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -74,7 +73,7 @@ fun WeatherPage(weatherUiMode: WeatherUiModel?) {
         )
         Spacer(modifier = Modifier.size(44.dp))
         Text(
-            text = "Limeil-Brevannes",
+            text = weatherUiMode?.city ?:"--",
             style = TextStyle(
                 fontSize = 18.sp,
                 color = Color.White,
@@ -101,7 +100,7 @@ fun WeatherPage(weatherUiMode: WeatherUiModel?) {
 fun DailyWeather(
     dailyWeatherList: List<DailyUiModel>
 ) {
-    if (dailyWeatherList.isNotEmpty()){
+    if (dailyWeatherList.isNotEmpty()) {
         LazyRow(content = {
             items(dailyWeatherList.subList(0, 5)) { item ->
                 DailyWeatherItem(
@@ -115,4 +114,4 @@ fun DailyWeather(
 
         }, horizontalArrangement = Arrangement.Center)
     }
-    }
+}

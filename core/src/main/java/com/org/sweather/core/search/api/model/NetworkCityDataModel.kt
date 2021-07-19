@@ -4,6 +4,12 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
+data class NetworkCityResponse(
+    @SerialName("message")
+    val list: List<NetworkCityDataModel>
+)
+
+@Serializable
 data class NetworkCityDataModel(
     @SerialName("city")
     val city: String,
