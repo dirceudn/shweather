@@ -34,6 +34,7 @@ dependencies {
     // Ktor
     implementation(Ktor.core)
     implementation(Ktor.json)
+    implementation(Gson.gson)
     implementation(Ktor.serialisation)
     implementation(Ktor.clientLogging)
     implementation(Ktor.androidClient)

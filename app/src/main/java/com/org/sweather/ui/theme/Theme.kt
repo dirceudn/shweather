@@ -5,36 +5,44 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
-
-private val DarkColorPalette = darkColors(
-        primary = Purple200,
-        primaryVariant = Purple700,
-        secondary = Teal200
-)
-
-private val LightColorPalette = lightColors(
-        primary = Purple500,
-        primaryVariant = Purple700,
-        secondary = Teal200
-
-        /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
-)
+import androidx.compose.ui.graphics.Color
+import com.org.sweather.search.ui.theme.LightColorPalette
+import com.org.sweather.ui.transparent
+import com.org.sweather.ui.warmFlameStart
 
 @Composable
-fun SweatherTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable() () -> Unit) {
-    val colors = LightColorPalette
+fun SweatherTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    color: Color? = null,
+    content: @Composable() () -> Unit,
+
+    ) {
+    val colors = if (darkTheme) {
+//        DarkColorPalette.copy(
+//            primary = color ?: DarkColorPalette.primary,
+//            secondary = color ?: DarkColorPalette.secondary,
+//            surface = color ?: DarkColorPalette.surface,
+//            primaryVariant = color ?: DarkColorPalette.primaryVariant,
+//        )
+        LightColorPalette.copy(
+            primary = color ?: LightColorPalette.primary,
+            secondary = color ?: LightColorPalette.secondary,
+            surface = color ?: LightColorPalette.surface,
+            primaryVariant = color ?: LightColorPalette.primaryVariant,
+        )
+    } else {
+        LightColorPalette.copy(
+            primary = color ?: LightColorPalette.primary,
+            secondary = color ?: LightColorPalette.secondary,
+            surface = color ?: LightColorPalette.surface,
+            primaryVariant = color ?: LightColorPalette.primaryVariant,
+        )
+    }
 
     MaterialTheme(
-            colors = colors,
-            typography = Typography,
-            shapes = Shapes,
-            content = content
+        colors = colors,
+        typography = com.org.sweather.search.ui.theme.Typography,
+        shapes = com.org.sweather.search.ui.theme.Shapes,
+        content = content
     )
 }

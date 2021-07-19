@@ -134,7 +134,7 @@ fun TemperatureResume.toTemperatureResumeData(): TemperatureResumeData = Tempera
     morning = morning
 )
 
-fun WeatherNetworkModel.toDataModel(): WeatherDataOneCall = WeatherDataOneCall(
+fun WeatherNetworkModel.toDataModel(city: String): WeatherDataOneCall = WeatherDataOneCall(
     id = id,
     city = city,
     lat = lat,

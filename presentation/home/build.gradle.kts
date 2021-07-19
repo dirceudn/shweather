@@ -34,6 +34,8 @@ android {
 
 dependencies {
 
+    implementation(LifeCycle.livedataExt)
+
     implementation(project(":presentation:ui"))
     testImplementation("junit:junit:4.+")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")

@@ -58,11 +58,14 @@ android {
 dependencies {
 
     implementation(Compose.runtime)
+    implementation(Accompanist.accomPanist)
     implementation(LifeCycle.runtimeKtx)
     implementation(Logs.napier)
 
     implementation(Koin.core)
     implementation(Koin.android)
+    implementation(Gson.gson)
+
     //android core
     testImplementation(Test.jUnit)
     androidTestImplementation(Test.runner)
@@ -74,5 +77,9 @@ dependencies {
 
     //project
     api(project(":presentation"))
+    api(project(":presentation:navigation"))
+    api(project(":presentation:search"))
+    api(project(":presentation:home"))
+    api(project(":presentation:settings"))
     api(project(":core"))
 }

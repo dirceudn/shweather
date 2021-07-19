@@ -9,7 +9,7 @@ data class WeatherNetworkModel(
     val city: String? = null,
     @SerialName("lat")
     val lat: Double?,
-    @SerialName("lng")
+    @SerialName("lon")
     val lng: Double?,
     @SerialName("timezone")
     val timeZone: String?,
@@ -72,7 +72,7 @@ data class DailyWeather(
     val sunrise: Long?,
     @SerialName("sunset")
     val sunset: Long?,
-    @SerialName("mooonrise")
+    @SerialName("moonrise")
     val mooonrise: Long?,
     @SerialName("moonset")
     val moonset: Long?,
@@ -109,9 +109,9 @@ data class FeelsLikeResume(
     val day: Double,
     @SerialName("night")
     val night: Double,
-    @SerialName("evening")
+    @SerialName("eve")
     val evening: Double,
-    @SerialName("morning")
+    @SerialName("morn")
     val morning: Double,
 )
 @Serializable
@@ -124,8 +124,8 @@ data class TemperatureResume(
     val max: Double,
     @SerialName("night")
     val night: Double,
-    @SerialName("evening")
+    @SerialName("eve")
     val evening: Double,
-    @SerialName("morning")
+    @SerialName("morn")
     val morning: Double,
 )
