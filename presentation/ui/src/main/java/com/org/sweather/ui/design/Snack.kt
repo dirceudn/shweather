@@ -14,7 +14,7 @@ import com.org.sweather.ui.warmFlameStart
 
 
 @Composable
-fun SnackBarCity(goBack: () -> Unit) {
+fun SnackBarCity(city: String, goBack: () -> Unit) {
     Snackbar(
         backgroundColor = warmFlameStart,
         action = {
@@ -28,7 +28,7 @@ fun SnackBarCity(goBack: () -> Unit) {
         modifier = Modifier.padding(12.dp)
     ) {
         Text(
-            text = "Go back to refresh your information",
+            text = if (city.isNotEmpty()) "Your city was found $city" else "City not found",
             style = MaterialTheme.typography.subtitle1.copy(
                 color = Color.White,
                 fontSize = 12.sp

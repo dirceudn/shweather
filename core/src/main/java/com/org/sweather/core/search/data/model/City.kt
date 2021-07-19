@@ -31,6 +31,6 @@ fun String.toSplit(): List<String> {
 
 sealed class CityStatus {
     object CityNotFound : CityStatus()
-    object CityFound : CityStatus()
+    data class CityFound(val city: String) : CityStatus()
     object CitySearching : CityStatus()
 }

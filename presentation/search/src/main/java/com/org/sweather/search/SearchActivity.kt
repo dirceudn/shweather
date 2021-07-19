@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -75,6 +76,7 @@ fun AutoCompleteSearchCityText(
 
 
     val onSearchClick = remember { mutableStateOf(false) }
+    val foundedCity = searchViewModel.cityStateFlow.collectAsState()
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(modifier = modifier) {
@@ -94,7 +96,7 @@ fun AutoCompleteSearchCityText(
         if (onSearchClick.value) {
             onOptionSelected()
             Box(modifier = Modifier.align(alignment = Alignment.BottomCenter)) {
-                SnackBarCity {
+                SnackBarCity(city = foundedCity.value) {
                     onBack()
                 }
             }

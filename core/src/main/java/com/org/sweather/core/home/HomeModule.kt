@@ -22,7 +22,7 @@ fun homeDiModule(openWeatherBaseUrl: String, openWeatherAppId: String) = module 
         }
     }
 
-    single<WeatherDataSource> { NetworkWeatherDataSource(get(), get()) }
+    single<WeatherDataSource> { NetworkWeatherDataSource(get(), get(), get()) }
 }
 
 val useCase = module {
