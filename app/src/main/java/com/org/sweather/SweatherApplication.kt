@@ -5,6 +5,7 @@ import com.org.sweather.app.di.appModule
 import com.org.sweather.core.app.di.initKoin
 import com.org.sweather.presentation.BuildConfig
 import com.org.sweather.search.di.searchModule
+import com.org.sweather.settings.di.settingsModule
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -35,7 +36,7 @@ class SweatherApplication : Application() {
             BuildConfig.WEATHER_ID,
             deviceLanguageGetter,
             preferenceGetter,
-            listOf(appModule, searchModule)
+            listOf(appModule, searchModule, settingsModule)
         ) {
             androidLogger()
             androidContext(this@SweatherApplication)

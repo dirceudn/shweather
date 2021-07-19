@@ -4,12 +4,15 @@ import com.org.sweather.core.LanguageManager
 import com.org.sweather.core.ModelPreferenceContract
 import com.org.sweather.core.home.homeModules
 import com.org.sweather.core.search.searchCityModule
+import com.org.sweather.core.settings.settingsModule
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
 
 
+@ExperimentalCoroutinesApi
 fun initKoin(
     openWeatherBaseUrl: String,
     searchCityBaseUrl: String,
@@ -25,7 +28,7 @@ fun initKoin(
         homeModules(openWeatherBaseUrl, openWeatherAppId) + searchCityModule(
             searchCityBaseUrl,
             isDebug
-        ) + specificModules + module {
+        ) + settingsModule() + specificModules + module {
             single { languageManager }
         } + module { single { preferenceManager } }
     )

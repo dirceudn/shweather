@@ -29,13 +29,12 @@ fun searchCityDiModule(openSearchCityBaseUrl: String, isDebug: Boolean) = module
 
 @ExperimentalCoroutinesApi
 val searchCityRepositoryModule = module {
-    factory<SearchCityRepository> { SearchCityRepositoryImpl(get(), get()) }
+    single<SearchCityRepository> { SearchCityRepositoryImpl(get(), get()) }
 }
 
 val searchCityUseCase = module {
     factory<CitiesStateFlow> { citiesStateFlow(get()) }
     factory<GetCitiesUseCase> { getCitiesUseCase(get()) }
-
 }
 
 
