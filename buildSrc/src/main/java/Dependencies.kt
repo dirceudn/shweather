@@ -1,27 +1,45 @@
 object Versions {
 
     //- Android native libs
-    const val compose = "1.0.0-beta09"
-    const val composeActivity = "1.3.0-rc01"
-    const val navigation = "2.4.0-alpha04"
-    const val gradle = "7.0.0-beta05"
-    const val constraintLayoutCompose = "1.0.0-alpha07"
-    const val composeRouterVersion = "0.18.0"
-    const val accompanist = "0.14.0"
-    const val lifecycleVersion = "2.2.0"
+    /**
+     * Compose
+     */
+    const val compose = "1.0.0"
+    const val composeTest = "1.0.0-rc02"
+    const val composeActivity = "1.3.0"
+    const val composeNavigation = "2.4.0-alpha05"
+    const val composeConstraintLayout = "1.0.0-beta01"
+    /** ----------------------------------------------- **/
+
+    /**
+     *
+     * Gradle plugin
+     *
+     */
+    const val gradle = "7.0.0"
+
+    /**------------------------------------------------- **/
+
+    /**
+     * Android native libs
+     */
+
+    const val accompanist = "0.15.0"
+    const val lifecycle = "2.2.0"
     const val appCompat = "1.3.0"
     const val kotlin = "1.4.32"
-    const val sharedPreferences = ""
     const val androidKtx = "1.6.0"
-    const val constraintLayout = "2.0.4"
+    const val constraintLayoutNative = "2.0.4"
     const val material = "1.4.0"
     const val firebaseBom = "26.1.0"
-
 
     //tests
     const val junit = "4.13"
     const val testRunner = "1.3.0"
     //-kotlin jetbrains libs
+
+    /**------------------------------------------------- **/
+
 
     // network
     const val ktor = "1.6.1"
@@ -36,7 +54,6 @@ object Versions {
     const val kotlinxDateTime = "0.2.1"
     const val timber = "4.7.1"
     const val napier = "1.5.0"
-    const val jsoup = "1.13.1"
 
 
 }
@@ -66,10 +83,13 @@ object Firebase {
     const val auth = "com.google.firebase:firebase-auth-ktx"
 }
 
+object Layout {
+    const val constraintLayout =
+        "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutNative}"
+}
 
 object Material {
-    const val constraintLayout =
-        "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+
 }
 
 object Kotlin {
@@ -87,9 +107,9 @@ object Compose {
     const val foundationLayout = "androidx.compose.foundation:foundation-layout:${Versions.compose}"
     const val material = "androidx.compose.material:material:${Versions.compose}"
     const val runtimeLiveData = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
-    const val navigation = "androidx.navigation:navigation-compose:${Versions.navigation}"
+    const val navigation = "androidx.navigation:navigation-compose:${Versions.composeNavigation}"
     const val constraintLayout =
-        "androidx.constraintlayout:constraintlayout-compose:${Versions.constraintLayoutCompose}"
+        "androidx.constraintlayout:constraintlayout-compose:${Versions.composeConstraintLayout}"
 }
 
 object AndroidSdk {
@@ -119,11 +139,11 @@ object KotlinXSerialisation {
 
 
 object LifeCycle {
-    const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleVersion}"
-    const val livedataExt = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleVersion}"
-    const val lifeCycleService = "androidx.lifecycle:lifecycle-service:${Versions.lifecycleVersion}"
+    const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+    const val livedataExt = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
+    const val lifeCycleService = "androidx.lifecycle:lifecycle-service:${Versions.lifecycle}"
     const val viewModelKtx =
-        "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}"
+        "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
 
 }
 
@@ -138,11 +158,7 @@ object DateTime {
 object Test {
     const val jUnit = "junit:junit:${Versions.junit}"
     const val runner = "androidx.test:runner:${Versions.testRunner}"
-    const val composeTest = "androidx.compose.ui:ui-test-junit4:${Versions.compose}}"
-}
-
-object Jsoup {
-    const val jsoup = "org.jsoup:jsoup:${Versions.jsoup}"
+    const val composeTest = "androidx.compose.ui:ui-test-junit4:${Versions.composeTest}}"
 }
 
 
