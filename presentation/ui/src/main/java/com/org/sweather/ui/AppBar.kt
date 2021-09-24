@@ -15,7 +15,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.insets.statusBarsHeight
@@ -23,8 +22,7 @@ import com.org.sweather.ui.thme.font
 
 @Composable
 fun SweatherAppBar(
-    title: String = "", navigateUp: (() -> Boolean)? = null, onSearchSelected: () -> Unit,
-    onSettingSelected: () -> Unit
+    navigateUp: (() -> Boolean)? = null, onSearchSelected: () -> Unit, onSettingSelected: () -> Unit
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.End
@@ -61,9 +59,7 @@ fun BackAppBar(
     title: String,
     onBackClicked: () -> Unit
 ) {
-    Column(modifier = Modifier.clickable {
-        onBackClicked()
-    }) {
+    Column {
         Spacer(
             Modifier
                 .background(transparent)
@@ -85,11 +81,15 @@ fun BackAppBar(
                     .background(transparent)
                     .width(16.dp)
             )
-            Image(
-                imageVector = ImageVector.vectorResource(id = R.drawable.ic_baseline_arrow_back_24),
-                colorFilter = ColorFilter.tint(Color.Black),
-                contentDescription = "Sweather back",
-            )
+            Box(modifier = Modifier.clickable {
+                onBackClicked()
+            }) {
+                Image(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_baseline_arrow_back_24),
+                    colorFilter = ColorFilter.tint(Color.Black),
+                    contentDescription = "Sweather back",
+                )
+            }
             Spacer(
                 Modifier
                     .background(transparent)

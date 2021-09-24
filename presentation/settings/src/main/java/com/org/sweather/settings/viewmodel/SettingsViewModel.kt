@@ -6,7 +6,7 @@ import com.org.sweather.core.settings.domain.usecase.SaveMetricsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class SettingsViewModel(
-    private val getMetricsUseCase: GetMetricsUseCase,
+    getMetricsUseCase: GetMetricsUseCase,
     private val saveMetricsUseCase: SaveMetricsUseCase
 ) : ViewModel() {
 

@@ -27,7 +27,7 @@ fun homeDiModule(openWeatherBaseUrl: String, openWeatherAppId: String) = module 
 
 val useCase = module {
     factory<WeatherStateFlow> { getWeatherFlow(get()) }
-    factory<GetWeatherUsecase> { getWeatherUseCase(get()) }
+    factory<GetWeatherUseCase> { getWeatherUseCase(get()) }
     factory<GetCitySavedUseCase> { getCitySavedUseCase(get()) }
 }
 
