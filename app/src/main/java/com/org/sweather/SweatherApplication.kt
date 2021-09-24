@@ -8,6 +8,7 @@ import com.org.sweather.search.di.searchModule
 import com.org.sweather.settings.di.settingsModule
 import io.github.aakira.napier.DebugAntilog
 import io.github.aakira.napier.Napier
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -15,6 +16,7 @@ import org.koin.android.ext.koin.androidLogger
 
 class SweatherApplication : Application() {
 
+    @ExperimentalCoroutinesApi
     @InternalCoroutinesApi
     override fun onCreate() {
         super.onCreate()

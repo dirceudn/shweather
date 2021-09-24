@@ -24,6 +24,7 @@ object Versions {
      * Android native libs
      */
 
+    const val AndroidXlifeCycle = "2.3.0"
     const val accompanist = "0.15.0"
     const val lifecycle = "2.2.0"
     const val appCompat = "1.3.0"
@@ -44,7 +45,7 @@ object Versions {
     // network
     const val ktor = "1.6.1"
     const val kotlinx = "1.2.2"
-    //courotines
+    //courotinesKotlinXSerialisation
 
     const val kotlinCoroutines = "1.4.3"
     //---
@@ -58,6 +59,11 @@ object Versions {
 
 }
 
+object Courotinues {
+    const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
+}
+
+
 object Accompanist {
     const val accomPanist = "com.google.accompanist:accompanist-permissions:${Versions.accompanist}"
     const val insets = "com.google.accompanist:accompanist-insets:${Versions.accompanist}"
@@ -65,7 +71,6 @@ object Accompanist {
 }
 
 object Logs {
-    const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     const val napier = "io.github.aakira:napier:${Versions.napier}"
 }
 
@@ -88,13 +93,8 @@ object Layout {
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayoutNative}"
 }
 
-object Material {
-
-}
-
 object Kotlin {
     const val extensions = "org.jetbrains.kotlin:kotlin-android-extensions:${Versions.kotlin}"
-
 }
 
 object Compose {
@@ -120,12 +120,15 @@ object AndroidSdk {
     const val versionName = "1.0"
     const val versionCode = 1
     const val buildToolsVersion = "30.0.3"
+    const val testRunner = "androidx.test.runner.AndroidJUnitRunner"
 }
 
 object Android {
     const val coreKtx = "androidx.core:core-ktx:${Versions.androidKtx}"
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val material = "com.google.android.material:material:${Versions.material}"
+    const val androidXlifeCycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidXlifeCycle}"
+    const val androidXlifeCycleExtension = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidXlifeCycle}"
 }
 
 object KotlinXSerialisation {

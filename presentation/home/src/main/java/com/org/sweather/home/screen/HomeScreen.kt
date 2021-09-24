@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.org.sweather.home.model.DailyUiModel
@@ -27,7 +26,6 @@ import kotlinx.coroutines.InternalCoroutinesApi
 
 
 @OptIn(InternalCoroutinesApi::class)
-@Preview(showBackground = true)
 @Composable
 fun HomeScreen(homeViewMode: HomeViewModel) {
 
@@ -41,7 +39,6 @@ fun HomeScreen(homeViewMode: HomeViewModel) {
 
 @Composable
 fun WeatherPage(weatherUiMode: WeatherUiModel?) {
-
     Column(
         modifier = Modifier
             .fillMaxWidth(),
@@ -73,7 +70,7 @@ fun WeatherPage(weatherUiMode: WeatherUiModel?) {
         )
         Spacer(modifier = Modifier.size(44.dp))
         Text(
-            text = weatherUiMode?.city ?:"--",
+            text = weatherUiMode?.city ?: "--",
             style = TextStyle(
                 fontSize = 18.sp,
                 color = Color.White,
@@ -91,27 +88,30 @@ fun WeatherPage(weatherUiMode: WeatherUiModel?) {
             )
         )
         Spacer(modifier = Modifier.size(34.dp))
-        DailyWeather(dailyWeatherList = weatherUiMode?.dailyUiModel as List<DailyUiModel>)
+        DailyWeather(dailyWeatherList = weatherUiMode?.dailyUiModel)
     }
 
 }
 
 @Composable
 fun DailyWeather(
-    dailyWeatherList: List<DailyUiModel>
+    dailyWeatherList: List<DailyUiModel?>?
 ) {
-    if (dailyWeatherList.isNotEmpty()) {
+    dailyWeatherList?.let { weeklyWeatherlist ->
         LazyRow(content = {
-            items(dailyWeatherList.subList(0, 5)) { item ->
-                DailyWeatherItem(
-                    icon = item.icon,
-                    min = item.min,
-                    max = item.max,
-                    date = item.date?.getDayOfWeek() ?: ""
-                )
-                //  Text(text = it.toString())
+            if(weeklyWeatherlist.isNotEmpty()){
+                items(weeklyWeatherlist.subList(0, 5)) { item ->
+                    item?.let { dailyItem ->
+                        DailyWeatherItem(
+                            icon = dailyItem.icon,
+                            min = dailyItem.min,
+                            max = dailyItem.max,
+                            date = dailyItem.date?.getDayOfWeek() ?: "--"
+                        )
+                    }
+                }
             }
-
         }, horizontalArrangement = Arrangement.Center)
     }
+
 }

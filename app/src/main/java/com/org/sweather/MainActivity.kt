@@ -58,7 +58,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Preview(showBackground = true)
 @InternalCoroutinesApi
 @Composable
 fun MainPage(

@@ -7,7 +7,7 @@ import io.ktor.client.statement.*
 
 class OpenWeatherApi(private val clientFactory: () -> HttpClient) {
 
-    val client by lazy {
+    private val client by lazy {
         clientFactory()
     }
 

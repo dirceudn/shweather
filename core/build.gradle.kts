@@ -8,14 +8,13 @@ plugins {
 
 android {
     compileSdkVersion(AndroidSdk.compile)
-    buildToolsVersion = "30.0.3"
+    buildToolsVersion = AndroidSdk.buildToolsVersion
 
     defaultConfig {
         minSdkVersion(AndroidSdk.min)
         targetSdkVersion(AndroidSdk.target)
 
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = AndroidSdk.testRunner
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -29,27 +28,28 @@ android {
 
 dependencies {
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}")
+    api(Courotinues.core)
 
     // Ktor
-    implementation(Ktor.core)
-    implementation(Ktor.json)
-    implementation(Gson.gson)
-    implementation(Ktor.serialisation)
-    implementation(Ktor.clientLogging)
-    implementation(Ktor.androidClient)
+    api(Ktor.core)
+    api(Ktor.json)
+    api(Gson.gson)
+    api(Ktor.serialisation)
+    api(Ktor.clientLogging)
+    api(Ktor.androidClient)
 
 
     // Serialize
     api(Koin.core)
     api(Koin.android)
     // Serialize
-    implementation(KotlinXSerialisation.serialisation)
-    implementation(KotlinXSerialisation.json)
+
+    api(KotlinXSerialisation.serialisation)
+    api(KotlinXSerialisation.json)
 
 
     // date time
-    implementation(DateTime.dateTime)
+    api(DateTime.dateTime)
 
     // Logs
     api(Logs.napier)

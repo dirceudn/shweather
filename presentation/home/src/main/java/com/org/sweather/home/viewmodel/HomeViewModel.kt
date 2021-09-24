@@ -32,8 +32,6 @@ class HomeViewModel(
         EmptyWeather()
     )
 
-
-
     init {
         viewModelScope.launch {
             weatherStateFlow.invoke().collect { state ->

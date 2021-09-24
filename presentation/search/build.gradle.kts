@@ -4,13 +4,14 @@ plugins {
 }
 
 android {
-    compileSdk = 30
-    buildToolsVersion = "30.0.3"
+    compileSdkVersion(AndroidSdk.compile)
+    buildToolsVersion = AndroidSdk.buildToolsVersion
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 30
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        minSdkVersion(AndroidSdk.min)
+        targetSdkVersion(AndroidSdk.target)
+
+        testInstrumentationRunner = AndroidSdk.testRunner
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -40,16 +41,8 @@ android {
 
 dependencies {
 
-    implementation(LifeCycle.runtimeKtx)
-    implementation(LifeCycle.livedataExt)
-
-    implementation(project(":presentation:ui"))
+    api(project(":presentation:ui"))
     implementation(project(":core"))
     implementation(project(":presentation:navigation"))
-    implementation("androidx.core:core-ktx:1.6.0")
-    implementation("androidx.appcompat:appcompat:1.3.0")
-    implementation("com.google.android.material:material:1.4.0")
-    testImplementation("junit:junit:4.+")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+
 }

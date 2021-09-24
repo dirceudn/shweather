@@ -1,9 +1,6 @@
 package com.org.sweather.search
 
-import android.app.Activity
 import android.os.Bundle
-import android.view.View
-import android.view.inputmethod.InputMethodManager
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Box
@@ -15,12 +12,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.google.accompanist.insets.ProvideWindowInsets
 import com.org.sweather.search.ui.theme.SearchTheme
 import com.org.sweather.search.viewmodel.SearchViewModel
 import com.org.sweather.ui.BackAppBar
 import com.org.sweather.ui.design.SnackBarCity
+import com.org.sweather.ui.extensions.hideKeyboard
 import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -41,27 +38,13 @@ class SearchActivity : AppCompatActivity() {
                             finish()
                         },
                         onOptionSelected = {
-                            hideKeyboard(this)
+                            this.hideKeyboard()
                         })
                 }
             }
         }
     }
 
-    @InternalCoroutinesApi
-    override fun onResume() {
-        super.onResume()
-    }
-
-    fun hideKeyboard(activity: Activity) {
-        val imm: InputMethodManager =
-            activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        var view = activity.currentFocus
-        if (view == null) {
-            view = View(activity)
-        }
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
-    }
 }
 
 
@@ -73,7 +56,6 @@ fun AutoCompleteSearchCityText(
     onOptionSelected: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-
 
     val onSearchClick = remember { mutableStateOf(false) }
     val foundedCity = searchViewModel.cityStateFlow.collectAsState()
@@ -104,12 +86,3 @@ fun AutoCompleteSearchCityText(
     }
 
 }
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    SearchTheme {
-        // Greeting("Android")
-    }
-}
-

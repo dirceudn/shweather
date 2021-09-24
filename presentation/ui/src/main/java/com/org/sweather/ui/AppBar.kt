@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.sp
 import com.google.accompanist.insets.statusBarsHeight
 import com.org.sweather.ui.thme.font
 
-@Preview(showBackground = true)
 @Composable
 fun SweatherAppBar(
     title: String = "", navigateUp: (() -> Boolean)? = null, onSearchSelected: () -> Unit,

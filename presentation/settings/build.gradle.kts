@@ -4,13 +4,14 @@ plugins {
 }
 
 android {
-    compileSdk = 30
-    buildToolsVersion = "30.0.3"
+    compileSdkVersion(AndroidSdk.compile)
+    buildToolsVersion = AndroidSdk.buildToolsVersion
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 30
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        minSdkVersion(AndroidSdk.min)
+        targetSdkVersion(AndroidSdk.target)
+
+        testInstrumentationRunner = AndroidSdk.testRunner
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -40,12 +41,7 @@ android {
 
 dependencies {
 
-    implementation(project(":presentation:ui"))
-    implementation(project(":presentation:navigation"))
-    implementation(Android.coreKtx)
-    implementation(Android.appCompat)
-    implementation(Android.material)
-    testImplementation("junit:junit:4.+")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    api(project(":presentation:ui"))
+    api(project(":presentation:navigation"))
+
 }
