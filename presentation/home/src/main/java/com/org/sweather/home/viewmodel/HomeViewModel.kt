@@ -17,11 +17,11 @@ import kotlinx.coroutines.launch
 @InternalCoroutinesApi
 class HomeViewModel(
     private val weatherStateFlow: WeatherStateFlow,
-    private val getWeatherUseCase: GetWeatherUseCase,
+     private val getWeatherUseCase: GetWeatherUseCase,
     private val getCitySavedUseCase: GetCitySavedUseCase
 ) : ViewModel() {
 
-    fun fetchWeather() {
+    init {
         viewModelScope.launch {
             val city = getCitySavedUseCase.invoke()
             getWeatherUseCase.invoke(cityData = city)

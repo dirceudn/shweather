@@ -53,7 +53,6 @@ class MainActivity : ComponentActivity() {
     @InternalCoroutinesApi
     override fun onResume() {
         super.onResume()
-        homeViewModel.fetchWeather()
     }
 }
 

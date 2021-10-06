@@ -1,6 +1,7 @@
 package com.org.sweather.core.home.data.repository
 
 import com.org.sweather.core.common.State
+import com.org.sweather.core.common.toEntity
 import com.org.sweather.core.home.data.datasource.WeatherDataSource
 import com.org.sweather.core.home.data.model.WeatherDataOneCall
 import com.org.sweather.core.home.domain.repository.WeatherRepository
